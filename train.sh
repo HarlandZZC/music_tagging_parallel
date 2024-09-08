@@ -1,1 +1,1 @@
-accelerate launch train.py
+python train.py

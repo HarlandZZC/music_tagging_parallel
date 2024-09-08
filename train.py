@@ -12,6 +12,7 @@ from pathlib import Path
 from torch.utils.data import DataLoader
 from torchaudio.transforms import MelSpectrogram
 from einops import rearrange
+import wandb
 # from audidata.datasets import GTZAN
 
 class GTZAN:
@@ -42,7 +43,7 @@ class GTZAN:
             elif split == "valid":
                 audio_names = audio_names[90:100]
             elif split == "test":
-                audio_names = audio_names[0:100]
+                audio_names = audio_names[90:100]
 
             index = self.lb_to_ix[label]
             target = np.zeros(len(labels), dtype=np.float32)
@@ -153,6 +154,18 @@ def seed_everything(seed):
 
 def train(root, device_ids, epochs, batch_size, lr):
 
+    wandb.init(
+        project="music_tagging_parallel",
+
+        config={
+            "epochs": epochs,
+            "batch_size": batch_size,
+            "lr": lr,
+        }
+        )
+    # epoch_loss_table = wandb.Table(columns=["epoch", "loss"])
+    # epoch_acc_table = wandb.Table(columns=["epoch", "acc"])
+
     train_dataset = GTZAN(
         root = root,
         split = "train",
@@ -181,40 +194,15 @@ def train(root, device_ids, epochs, batch_size, lr):
         shuffle=False,
     )
 
-    device = torch.device("cuda")
+    device = torch.device(f"cuda:{device_ids[0]}")
     model = CNN()
     model = torch.nn.DataParallel(model, device_ids=device_ids).cuda()
+    model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
     step = 0
-    for epoch in range(epochs+1):
-        # valid
-        pred_ids = np.array([])
-        target_ids = np.array([])
-        for audio, target in valid_dataloader:
-            audio = audio.to(device)
-            target = target.to(device)
-
-            with torch.no_grad():
-                model.eval()
-                output = model(audio) 
-                pred_id = output.argmax(dim=1).cpu().numpy()
-                target_id = target.argmax(dim=1).cpu().numpy()
-
-                pred_ids = np.append(pred_ids, pred_id)
-                target_ids = np.append(target_ids, target_id)              
-
-        acc = (pred_ids == target_ids).mean()
-        print("epoch:", epoch, "valid acc:", f"{acc.item() * 100:.2f}%")
-
-        # save model
-        if epoch % 10 == 0 and epoch != 0:
-            torch.save(model.state_dict(),
-                       f"./checkpoints/epoch{epoch}.pth")
-
+    for epoch in range(1, epochs+1):
         # train
-        if epoch == epochs:
-            break
         for audio, target in train_dataloader:
             audio = audio.to(device)
             target = target.to(device)
@@ -227,13 +215,47 @@ def train(root, device_ids, epochs, batch_size, lr):
             optimizer.step()
 
             step += 1
-            print("epoch:", epoch+1, "step:", step, "loss:", loss.item())
 
+            print("epoch:", epoch, "step:", step, "loss:", loss.item())
+
+        #valid
+        if epoch % 1 == 0:
+            pred_ids = np.array([])
+            target_ids = np.array([])
+            for audio, target in valid_dataloader:
+                audio = audio.to(device)
+                target = target.to(device)
+
+                with torch.no_grad():
+                    model.eval()
+                    output = model(audio) 
+                    pred_id = output.argmax(dim=1).cpu().numpy()
+                    target_id = target.argmax(dim=1).cpu().numpy()
+
+                    pred_ids = np.append(pred_ids, pred_id)
+                    target_ids = np.append(target_ids, target_id)              
+
+            acc = (pred_ids == target_ids).mean()
+            print("epoch:", epoch, "step:", step, "loss:", loss.item(), "acc:", acc)
+
+            # epoch_loss_table.add_data(epoch, loss.item())
+            # epoch_loss_table_plot = wandb.plot.line(epoch_loss_table, "epoch", "loss")
+            # wandb.log({"epoch_loss_table": epoch_loss_table_plot})
+            # wandb.log({"epoch": epoch, "step": step, "loss": loss.item(), "acc": acc})
+
+        # save
+        if epoch % 10 == 0:
+            if not os.path.exists("./checkpoints"):
+                os.makedirs("./checkpoints")
+            torch.save(model.state_dict(),
+                    f"./checkpoints/epoch{epoch}.pth")
+
+wandb.finish()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=str, default="/datasets/gtzan")
-    parser.add_argument("--device_ids", type=int, nargs='+', default=[0,1,2])
+    parser.add_argument("--device_ids", type=int, nargs='+', default=[1,2])
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--batch_size", type=int, default=108)
     parser.add_argument("--lr", type=float, default=1e-3)

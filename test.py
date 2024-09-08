@@ -53,7 +53,7 @@ if __name__ == "__main__":
     parser.add_argument("--root", type=str, default="/datasets/gtzan")
     parser.add_argument("--device_ids", type=int, nargs='+', default=[0,1,2])
     parser.add_argument("--batch_size", type=int, default=64)
-    parser.add_argument("--checkpoint", type=str, default="./checkpoints/epoch20.pth")
+    parser.add_argument("--checkpoint", type=str, default="./checkpoints/epoch100.pth")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
