@@ -233,7 +233,8 @@ def train(root, device_ids, epochs, batch_size, lr):
                     target_id = target.argmax(dim=1).cpu().numpy()
 
                     pred_ids = np.append(pred_ids, pred_id)
-                    target_ids = np.append(target_ids, target_id)              
+                    target_ids = np.append(target_ids, target_id)
+                    model.train()              
 
             acc = (pred_ids == target_ids).mean()
             print("epoch:", epoch, "step:", step, "loss:", loss.item(), "acc:", acc)
@@ -241,22 +242,24 @@ def train(root, device_ids, epochs, batch_size, lr):
             # epoch_loss_table.add_data(epoch, loss.item())
             # epoch_loss_table_plot = wandb.plot.line(epoch_loss_table, "epoch", "loss")
             # wandb.log({"epoch_loss_table": epoch_loss_table_plot})
-            # wandb.log({"epoch": epoch, "step": step, "loss": loss.item(), "acc": acc})
+            wandb.log({"epoch": epoch, "step": step, "loss": loss.item(), "acc": acc})
 
         # save
         if epoch % 10 == 0:
-            if not os.path.exists("./checkpoints"):
+            if os.path.exists("./checkpoints") == False:
                 os.makedirs("./checkpoints")
+            if os.path.exists(f"./checkpoints/epoch{epoch}.pth") == True:
+                os.remove(f"./checkpoints/epoch{epoch}.pth")
             torch.save(model.state_dict(),
                     f"./checkpoints/epoch{epoch}.pth")
 
-wandb.finish()
+    wandb.finish()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=str, default="/datasets/gtzan")
     parser.add_argument("--device_ids", type=int, nargs='+', default=[1,2])
-    parser.add_argument("--epochs", type=int, default=100)
+    parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--batch_size", type=int, default=108)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--seed", type=int, default=42)

@@ -1,0 +1,24 @@
+{
+    "os": "Linux-6.5.0-44-generic-x86_64-with-glibc2.17",
+    "python": "3.8.18",
+    "heartbeatAt": "2024-09-14T10:09:03.076885",
+    "startedAt": "2024-09-14T10:09:02.034215",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_count": 8,
+    "cpu_count": 144,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "git@github.com:HarlandZZC/music_tagging_parallel.git",
+        "commit": "694c3c709bf3b6e3ac6c5f6a0baabb59691f0bbf"
+    },
+    "email": "harlandzzc@gmail.com",
+    "root": "/home/haolin/research/audio_tagging/music_tagging_parallel",
+    "host": "dspAlpha4090",
+    "username": "haolin",
+    "executable": "/home/haolin/anaconda3/envs/music_tagging/bin/python3"
+}

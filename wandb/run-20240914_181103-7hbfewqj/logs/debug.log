@@ -1,0 +1,172 @@
+2024-09-14 18:11:03,678 INFO    MainThread:3616915 [wandb_setup.py:_flush():76] Loading settings from /home/haolin/.config/wandb/settings
+2024-09-14 18:11:03,678 INFO    MainThread:3616915 [wandb_setup.py:_flush():76] Loading settings from /home/haolin/research/audio_tagging/music_tagging_parallel/wandb/settings
+2024-09-14 18:11:03,678 INFO    MainThread:3616915 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-09-14 18:11:03,678 INFO    MainThread:3616915 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program': 'train.py'}
+2024-09-14 18:11:03,678 INFO    MainThread:3616915 [wandb_init.py:_log_setup():428] Logging user logs to /home/haolin/research/audio_tagging/music_tagging_parallel/wandb/run-20240914_181103-7hbfewqj/logs/debug.log
+2024-09-14 18:11:03,678 INFO    MainThread:3616915 [wandb_init.py:_log_setup():429] Logging internal logs to /home/haolin/research/audio_tagging/music_tagging_parallel/wandb/run-20240914_181103-7hbfewqj/logs/debug-internal.log
+2024-09-14 18:11:03,679 INFO    MainThread:3616915 [wandb_init.py:init():462] calling init triggers
+2024-09-14 18:11:03,679 INFO    MainThread:3616915 [wandb_init.py:init():465] wandb.init called with sweep_config: {}
+config: {'epochs': 10, 'batch_size': 108, 'lr': 0.001}
+2024-09-14 18:11:03,679 INFO    MainThread:3616915 [wandb_init.py:init():515] starting backend
+2024-09-14 18:11:03,679 INFO    MainThread:3616915 [backend.py:_multiprocessing_setup():97] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-09-14 18:11:03,689 INFO    MainThread:3616915 [backend.py:ensure_launched():217] starting backend process...
+2024-09-14 18:11:03,700 INFO    MainThread:3616915 [backend.py:ensure_launched():222] started backend process with pid: 3617074
+2024-09-14 18:11:03,701 INFO    MainThread:3616915 [wandb_init.py:init():525] backend started and connected
+2024-09-14 18:11:03,706 INFO    MainThread:3616915 [wandb_init.py:init():596] updated telemetry
+2024-09-14 18:11:03,722 INFO    MainThread:3616915 [wandb_init.py:init():627] communicating run to backend with 30 second timeout
+2024-09-14 18:11:04,574 INFO    MainThread:3616915 [wandb_run.py:_on_init():1924] communicating current version
+2024-09-14 18:11:04,633 INFO    MainThread:3616915 [wandb_run.py:_on_init():1928] got version response upgrade_message: "wandb version 0.18.0 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-09-14 18:11:04,633 INFO    MainThread:3616915 [wandb_init.py:init():662] starting run threads in backend
+2024-09-14 18:11:06,549 INFO    MainThread:3616915 [wandb_run.py:_console_start():1898] atexit reg
+2024-09-14 18:11:06,550 INFO    MainThread:3616915 [wandb_run.py:_redirect():1771] redirect: SettingsConsole.REDIRECT
+2024-09-14 18:11:06,550 INFO    MainThread:3616915 [wandb_run.py:_redirect():1776] Redirecting console.
+2024-09-14 18:11:06,552 INFO    MainThread:3616915 [wandb_run.py:_redirect():1832] Redirects installed.
+2024-09-14 18:11:06,553 INFO    MainThread:3616915 [wandb_init.py:init():688] run started, returning control to user process
+2024-09-14 18:12:37,694 INFO    MainThread:3616915 [wandb_run.py:_finish():1685] finishing run harlandzzc-the-chinese-university-of-hong-kong/music_tagging_parallel/7hbfewqj
+2024-09-14 18:12:37,695 INFO    MainThread:3616915 [wandb_run.py:_atexit_cleanup():1867] got exitcode: 0
+2024-09-14 18:12:37,697 INFO    MainThread:3616915 [wandb_run.py:_restore():1839] restore
+2024-09-14 18:12:40,308 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 789
+}
+
+2024-09-14 18:12:40,597 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 789
+}
+
+2024-09-14 18:12:40,872 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 789
+}
+
+2024-09-14 18:12:41,652 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:41,754 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:41,857 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:41,959 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,060 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,162 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 789
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,265 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 936
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,367 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,469 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,571 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,673 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:42,775 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:43,436 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+
+2024-09-14 18:12:43,979 INFO    MainThread:3616915 [wandb_run.py:_on_finish():1996] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 14462
+  total_bytes: 14462
+}
+local_info {
+}
+
+2024-09-14 18:12:45,139 INFO    MainThread:3616915 [wandb_run.py:_footer_history_summary_info():3104] rendering history
+2024-09-14 18:12:45,140 INFO    MainThread:3616915 [wandb_run.py:_footer_history_summary_info():3136] rendering summary
+2024-09-14 18:12:45,144 INFO    MainThread:3616915 [wandb_run.py:_footer_sync_info():3060] logging synced files
