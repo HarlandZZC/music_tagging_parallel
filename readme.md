@@ -17,6 +17,7 @@ Please follow the steps below to set up and run the training process:
 
     ```bash
     conda env create -f music_tagging_env.yaml
+    conda activate music_tagging
     ```
 
     If some packages cannot be installed through the YAML file, please download them manually.
