@@ -1,6 +1,6 @@
 # Music Tagging Parallel Training
 
-This repository contains an example of distributed training for music tagging using the `torch.nn.DataParallel` framework. It demonstrates how to set up single-machine, multi-GPU parallel training.
+This repository contains an example of training with data parallelism for music tagging using the `torch.nn.DataParallel` framework. It demonstrates how to set up single-machine, multi-GPU parallel training.
 
 ## Setup Instructions
 
